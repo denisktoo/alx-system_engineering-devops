@@ -1,2 +1,2 @@
 #!/bin/bash
-find $(echo "$PATH" | tr ':' ' ') -maxdepth 0 -type d 2>/dev/null | wc -l
+echo "$PATH" | tr ':' '\n' | grep -v '^$' | wc -l
