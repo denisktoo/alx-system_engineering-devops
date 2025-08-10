@@ -1,1 +1,42 @@
 https://www.canva.com/design/DAGvlhnh5xs/bapUJoEXproQbUNvKGaLaA/edit?utm_content=DAGvlhnh5xs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
+Simple Web Infrastructure Summary
+
+Overview:
+A simple infrastructure consists of a single server setup hosting the entire website. 
+It is the most basic form of deployment and is suitable for low-traffic websites.
+
+Components:
+1. **Web Server (Nginx)**:
+   - Handles HTTP requests from users.
+   - Serves static files (HTML, CSS, JS) directly.
+   - Passes dynamic requests to the application server.
+
+2. **Application Server**:
+   - Runs the website's backend application code.
+   - Processes business logic and interacts with the database.
+   - Communicates with the web server via protocols like WSGI/ASGI.
+
+3. **Database (MySQL/PostgreSQL)**:
+   - Stores persistent data (e.g., user accounts, posts, orders).
+   - Accessed by the application server via SQL queries.
+
+4. **DNS (Domain Name System)**:
+   - Maps the domain name (e.g., www.foobar.com) to the server's IP address.
+   - Allows users to access the site using a readable URL.
+
+5. **Single Server**:
+   - Hosts all components (web server, app server, database).
+   - Simplifies deployment and maintenance.
+
+Infrastructure Issues:
+- Single point of failure: If the server crashes, the entire website goes down.
+- Limited scalability: Performance degrades under high traffic.
+- Maintenance downtime: Updates cause full website downtime.
+
+Why Each Element is Included:
+- Web Server: Efficiently handles static files and forwards dynamic requests.
+- Application Server: Processes backend logic and handles requests.
+- Database: Stores and retrieves structured data.
+- DNS: Converts human-readable URLs to machine-readable IPs.
+- Single Server: Simplifies setup for small projects.
