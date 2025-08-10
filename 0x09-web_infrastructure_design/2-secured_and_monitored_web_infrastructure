@@ -3,7 +3,7 @@ https://www.canva.com/design/DAGvldvx40E/xYi7E1qU6V4191sWsX4-cA/edit?utm_content
 Secured Web Infrastructure Summary - www.foobar.com
 
 Overview:
-This infrastructure hosts www.foobar.com with high availability, security, and monitoring, based on a distributed model with added layers.
+This infrastructure hosts www.foobar.com basic security and monitoring using a three-tier architecture.
 
 Components and Their Purpose:
 * User: Accesses the site via browser over HTTPS to ensure secure communication
