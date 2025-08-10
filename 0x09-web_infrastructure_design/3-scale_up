@@ -1,42 +1,42 @@
 https://www.canva.com/design/DAGvlkbsn6U/G3V7alyn477cwyM7v23ILg/edit?utm_content=DAGvlkbsn6U&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
-
-Scaled Infrastructure Summary
+Scaled Infrastructure Summary - www.foobar.com
 
 Overview:
-A scaled web infrastructure is designed to handle higher traffic, improve reliability, and eliminate single points of failure (SPOF). It expands upon the simple one-server setup by adding redundancy, load distribution, and fault tolerance.
+A scaled web infrastructure designed to handle higher traffic and improve reliability by adding load balancer redundancy and server separation. It expands upon the simple one-server setup by adding some redundancy and dedicated server functions.
 
 Components:
-1. Load Balancer (LB)  
-   - Role: Distributes incoming traffic across multiple web servers.  
-   - Reason for Addition: Prevents overloading a single server, improves availability.  
+1. DNS Resolution
+   - Role: Points www.foobar.com domain to load balancer cluster at 8.8.8.8
+   - Reason for Addition: Directs user traffic to the load balancing layer
 
-2. Multiple Web Servers (Nginx/Apache)  
-   - Role: Serve static files and forward dynamic requests to app servers.  
-   - Reason for Addition: Redundancy — if one web server fails, others handle the load.  
+2. Load Balancer Cluster (HAProxy)
+   - Role: Two HAProxy instances - Primary (8.8.8.8) and Secondary cluster partner
+   - Reason for Addition: Eliminates single point of failure at load balancing layer, improves availability
 
-3. Multiple Application Servers  
-   - Role: Run application logic, process requests, connect to the database.  
-   - Reason for Addition: Parallel processing of requests, better performance, failover support.  
+3. Dedicated Web Server (Nginx)
+   - Role: Handles HTTP requests, serves static files (HTML/CSS/JS), contains application files
+   - Reason for Addition: Specialized for web serving tasks, better performance than mixed-purpose server
 
-4. Database Replication (Primary + Replica)  
-   - Role: Store application data, with the replica providing read access.  
-   - Reason for Addition: Improves read performance, ensures data availability if the primary fails.  
+4. Dedicated Application Server
+   - Role: Runs application logic and business logic processing, contains application files
+   - Reason for Addition: Dedicated processing power for application code, no resource contention
 
-5. Cache Server (Redis/Memcached)  
-   - Role: Stores frequently accessed data in memory for faster retrieval.  
-   - Reason for Addition: Reduces database load, speeds up responses.  
+5. Dedicated Database Server
+   - Role: MySQL database with data storage, queries, backup and replication capabilities
+   - Reason for Addition: Optimized for database operations, isolated from other server functions
 
-6. CDN (Content Delivery Network) 
-   - Role: Serves static content from edge locations closer to users.  
-   - Reason for Addition: Reduces latency, improves user experience globally.  
+6. Application Files Replication
+   - Role: Codebase replicated across web and application servers
+   - Reason for Addition: Ensures consistency and availability of application code
 
-7. firewall/Security Layer  
-   - Role: Filters malicious traffic before it reaches servers.  
-   - Reason for Addition: Protects infrastructure from attacks, improves security.
+Infrastructure Improvements Made:
+- Eliminates single point of failure at load balancer level
+- Improves performance through server specialization
+- Reduces resource contention by separating server functions
+- Provides load balancer redundancy for high availability
 
-Infrastructure Issues Prevented:
-- Eliminates single points of failure.  
-- Improves scalability and performance.  
-- Supports high availability and disaster recovery.  
-- Handles high traffic without service degradation.
+Infrastructure Issues:
+* SSL Termination at Load Balancer: If implemented, unencrypted traffic would flow between load balancer and backend servers, creating internal security vulnerability if network is compromised
+* Single MySQL Writer: Only one database server accepts writes, creating single point of failure - if database goes down, no write operations possible, affecting application availability
+* Component Separation: Actually GOOD here - dedicated servers avoid resource contention, performance issues, and security risks that occur when database, web server, and application server compete for same resources on one machine
