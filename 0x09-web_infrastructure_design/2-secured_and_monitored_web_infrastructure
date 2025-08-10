@@ -1,35 +1,30 @@
 https://www.canva.com/design/DAGvldvx40E/xYi7E1qU6V4191sWsX4-cA/edit?utm_content=DAGvldvx40E&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
-Secured Web Infrastructure Summary
+Secured Web Infrastructure Summary - www.foobar.com
 
 Overview:
-This infrastructure hosts [www.foobar.com](http://www.foobar.com) with high availability, security, and monitoring, based on a distributed model with added layers.
+This infrastructure hosts www.foobar.com with high availability, security, and monitoring, based on a distributed model with added layers.
 
 Components and Their Purpose:
+* User: Accesses the site via browser over HTTPS to ensure secure communication
+* SSL Certificate: Provides HTTPS encryption for www.foobar.com domain
+* HAProxy Load Balancer: Single load balancer (IP: 8.8.8.8) distributes traffic to backend servers
+* Firewalls (3): Individual network firewalls protecting each server from malicious traffic
+* Server 1 - Web Server: Nginx web server with application files (codebase)
+* Server 2 - Application Server: Application server with application files (codebase)
+* Server 3 - Database Server: Single MySQL database with backup & replication capabilities
+* Monitoring Clients: Local monitoring agents installed on each server
 
-* User: Accesses the site via browser over HTTPS to ensure secure communication.
-* DNS: Managed by providers like Cloudflare or AWS Route 53; directs users to the nearest CDN edge with load balancing and geo-DNS for faster response.
-* CDN: Caches static content close to users, speeds delivery, and provides DDoS protection.
-* Firewall and Security Layer: Includes Web Application Firewall (WAF) and network firewalls to filter malicious traffic and restrict access between components.
-* Load Balancers: Distribute incoming traffic evenly to multiple application servers; redundancy ensures no single point of failure here.
-* Application Servers: Run backend code; deployed across multiple availability zones for fault tolerance; do not serve static files directly.
-* Database Servers: Primary-Replica setup with encrypted connections and strict access controls; replicas provide read scalability and redundancy.
-* Monitoring and Logging: Tools like Prometheus and Grafana collect metrics via agents on servers, providing real-time performance insight and alerting.
-* Backup and Disaster Recovery: Automated backups and snapshots stored across regions for resilience.
-
-Why HTTPS and Firewalls?
-
-* HTTPS encrypts all user-server communication, protecting data privacy and integrity.
-* Firewalls filter traffic to block unauthorized or malicious requests, securing the network.
+Why HTTPS and Firewalls:
+* HTTPS encrypts all user-server communication, protecting data privacy and integrity
+* Firewalls filter traffic to block unauthorized or malicious requests, securing each server
 
 Monitoring Details:
-
-* Agents/exporters collect server metrics (CPU, memory, QPS).
-* Data is sent to a centralized system (e.g., Prometheus) and visualized on dashboards (e.g., Grafana).
-* To monitor Web Server QPS, configure agents to track HTTP request counts and set alerts for anomalies.
+* Local monitoring clients collect server metrics (CPU, memory, network statistics)
+* Each server monitors itself independently - no centralized monitoring system shown
+* To monitor Web Server QPS: Configure monitoring client on Server 1 to track Nginx request logs and HTTP request counts
 
 Infrastructure Issues:
-
-* SSL Termination at Load Balancer: If SSL is terminated here, unencrypted traffic travels inside the network, risking data exposure if internal security is weak.
-* Single Writable MySQL Server: Acts as a single point of failure; if it goes down, writes halt, affecting availability.
-* Servers with All Components: Not applicable here—servers are separated by function, avoiding resource contention and easing scalability.
+* SSL Termination at Load Balancer: Unencrypted traffic flows between load balancer and servers, creating internal security risk
+* Single MySQL Server: Only one database server can accept writes, creating single point of failure for write operations
+* Component Mixing: Actually GOOD separation shown - each server has dedicated function avoiding resource contention
