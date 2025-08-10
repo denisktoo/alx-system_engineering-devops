@@ -1,42 +1,31 @@
 https://www.canva.com/design/DAGvlhnh5xs/bapUJoEXproQbUNvKGaLaA/edit?utm_content=DAGvlhnh5xs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
-Simple Web Infrastructure Summary
+Simple One-Server Web Infrastructure Summary ([www.foobar.com](http://www.foobar.com))
 
 Overview:
-A simple infrastructure consists of a single server setup hosting the entire website. 
-It is the most basic form of deployment and is suitable for low-traffic websites.
+A simple web infrastructure consists of a single physical or virtual server hosting the entire website. This is the most basic form of deployment, suitable for low-traffic websites, where all components run on one machine.
 
-Components:
-1. **Web Server (Nginx)**:
-   - Handles HTTP requests from users.
-   - Serves static files (HTML, CSS, JS) directly.
-   - Passes dynamic requests to the application server.
+Components & Roles:
 
-2. **Application Server**:
-   - Runs the website's backend application code.
-   - Processes business logic and interacts with the database.
-   - Communicates with the web server via protocols like WSGI/ASGI.
-
-3. **Database (MySQL/PostgreSQL)**:
-   - Stores persistent data (e.g., user accounts, posts, orders).
-   - Accessed by the application server via SQL queries.
-
-4. **DNS (Domain Name System)**:
-   - Maps the domain name (e.g., www.foobar.com) to the server's IP address.
-   - Allows users to access the site using a readable URL.
-
-5. **Single Server**:
-   - Hosts all components (web server, app server, database).
-   - Simplifies deployment and maintenance.
+* Server: The physical or virtual machine that hosts the website and all related services.
+* Domain Name: A human-readable address (e.g., [www.foobar.com](http://www.foobar.com)) that points to the server’s IP address.
+* DNS Record: An A record for ‘www’ maps the domain name to the server’s IP.
+* Web Server (Nginx): Handles HTTP/HTTPS requests from users, serves static files like HTML, CSS, and JavaScript directly, and forwards dynamic requests to the application server.
+* Application Server: Runs the backend application code (e.g., Python, PHP), processes business logic, and communicates with the database.
+* Database (MySQL/PostgreSQL): Stores persistent structured data such as user accounts, posts, and orders. It is accessed by the application server through SQL queries.
+* Communication: User browsers connect to the server over HTTP/HTTPS protocols via TCP/IP.
 
 Infrastructure Issues:
-- Single point of failure: If the server crashes, the entire website goes down.
-- Limited scalability: Performance degrades under high traffic.
-- Maintenance downtime: Updates cause full website downtime.
 
-Why Each Element is Included:
-- Web Server: Efficiently handles static files and forwards dynamic requests.
-- Application Server: Processes backend logic and handles requests.
-- Database: Stores and retrieves structured data.
-- DNS: Converts human-readable URLs to machine-readable IPs.
-- Single Server: Simplifies setup for small projects.
+* Single Point of Failure (SPOF): If the single server fails or crashes, the entire website becomes unavailable.
+* Limited Scalability: One server can struggle under high traffic, causing performance degradation.
+* Downtime: Maintenance, updates, or deployments typically require restarting services, which causes temporary website unavailability.
+
+Why Each Component is Included:
+
+* The Web Server efficiently manages static content and routes dynamic requests.
+* The Application Server handles backend logic and dynamic content generation.
+* The Database stores and retrieves necessary data to support application functions.
+* The DNS translates easy-to-remember domain names into machine-readable IP addresses.
+* A Single Server setup simplifies deployment and maintenance for small projects but comes with trade-offs in reliability and scalability.
+

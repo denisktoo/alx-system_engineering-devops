@@ -1,1 +1,42 @@
 https://www.canva.com/design/DAGvloHlga4/sbkd28xYqTx8m356ZxFsPQ/edit?utm_content=DAGvloHlga4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
+Distributed Web Infrastructure Summary
+
+A distributed web infrastructure spreads workload across multiple servers to enhance performance, scalability, and reliability.
+
+Flow Overview:
+
+1. User enters `www.foobar.com`.
+2. DNS resolves the domain to the load balancer’s IP address.
+3. Load balancer distributes incoming requests to multiple web servers.
+4. Web servers (Nginx) serve static files and forward dynamic requests to application servers.
+5. Application servers process business logic and interact with the database cluster.
+6. Database cluster (Primary-Replica) manages data storage, improving read/write performance.
+7. CDN delivers static content from edge locations near the user for faster load times.
+
+Key Components and Reasons for Adding Them:
+
+* Load Balancer: Balances traffic evenly across servers to prevent overload and improve availability.
+* Multiple Web and Application Servers: Increase capacity and provide fault tolerance by handling requests concurrently.
+* Primary-Replica Database Setup: Primary node handles writes and replicates data to read-only replicas, which offload read traffic and provide redundancy.
+* Content Delivery Network (CDN): Accelerates static content delivery globally, improving user experience.
+
+Load Balancer Distribution Algorithm:
+
+* Uses Round Robin method: cycles through servers sequentially, distributing requests evenly.
+
+Load Balancer Setup Types:
+
+* Active-Active: Multiple load balancers operate simultaneously, sharing traffic for high availability.
+* Active-Passive: One active load balancer handles traffic, while a standby waits to take over if the active fails.
+
+Primary vs. Replica Database Nodes:
+
+* Primary Node: Accepts all write and read requests; ensures data consistency.
+* Replica Nodes: Read-only copies used for query load distribution and backups.
+
+Infrastructure Issues to Note:
+
+* Single Points of Failure (SPOF): Without proper failover, the load balancer or primary database failure can cause outages.
+* Security Concerns: Absence of firewalls and HTTPS leaves the system vulnerable to attacks and data interception.
+* Lack of Monitoring: Without monitoring tools, issues may go unnoticed, leading to slower response to failures or performance drops.

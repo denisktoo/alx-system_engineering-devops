@@ -1,1 +1,42 @@
 https://www.canva.com/design/DAGvlkbsn6U/G3V7alyn477cwyM7v23ILg/edit?utm_content=DAGvlkbsn6U&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
+
+Scaled Infrastructure Summary
+
+Overview:
+A scaled web infrastructure is designed to handle higher traffic, improve reliability, and eliminate single points of failure (SPOF). It expands upon the simple one-server setup by adding redundancy, load distribution, and fault tolerance.
+
+Components:
+1. Load Balancer (LB)  
+   - Role: Distributes incoming traffic across multiple web servers.  
+   - Reason for Addition: Prevents overloading a single server, improves availability.  
+
+2. Multiple Web Servers (Nginx/Apache)  
+   - Role: Serve static files and forward dynamic requests to app servers.  
+   - Reason for Addition: Redundancy — if one web server fails, others handle the load.  
+
+3. Multiple Application Servers  
+   - Role: Run application logic, process requests, connect to the database.  
+   - Reason for Addition: Parallel processing of requests, better performance, failover support.  
+
+4. Database Replication (Primary + Replica)  
+   - Role: Store application data, with the replica providing read access.  
+   - Reason for Addition: Improves read performance, ensures data availability if the primary fails.  
+
+5. Cache Server (Redis/Memcached)  
+   - Role: Stores frequently accessed data in memory for faster retrieval.  
+   - Reason for Addition: Reduces database load, speeds up responses.  
+
+6. CDN (Content Delivery Network) 
+   - Role: Serves static content from edge locations closer to users.  
+   - Reason for Addition: Reduces latency, improves user experience globally.  
+
+7. firewall/Security Layer  
+   - Role: Filters malicious traffic before it reaches servers.  
+   - Reason for Addition: Protects infrastructure from attacks, improves security.
+
+Infrastructure Issues Prevented:
+- Eliminates single points of failure.  
+- Improves scalability and performance.  
+- Supports high availability and disaster recovery.  
+- Handles high traffic without service degradation.
